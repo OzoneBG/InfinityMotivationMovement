@@ -8,6 +8,7 @@ An online shop for selling everyday merchandise with motivation text on it
 * **Shop**
   - [ ] A 'Shop' link in the navigation bar to display all merchandise
   - [ ] Ability to filter stock by category, color or price
+  - [ ] Ability to search by name
   - [ ] Ability to add items to shopping cart and buying items
   - [ ] Ability to add coupons
 * **About**
