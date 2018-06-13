@@ -2,7 +2,7 @@
 {
     using System.Diagnostics;
     using Microsoft.AspNetCore.Mvc;
-    using IMM.Web.Models;
+    using IMM.Web.ViewModels;
 
     public class HomeController : Controller
     {
