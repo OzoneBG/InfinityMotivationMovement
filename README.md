@@ -21,7 +21,11 @@ An online shop for selling everyday merchandise with motivation text on it
   - [ ] Ability to erase all personal data
 * **Registration**
   - [ ] Customer consent that we can use the data
-  
+* **Administration**
+  - [ ] Ability to add new admins
+  - [ ] Ability to view monthly income
+  - [ ] Ability to edit merchandise (CRUD)
+   
 ## Types of Products
 1. Mugs
 2. T-Shirts
