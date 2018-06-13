@@ -6,9 +6,13 @@
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using IMM.Web.Data;
-    using IMM.Web.Models;
-    using IMM.Web.Services;
+    using AutoMapper;
+    using IMM.Data.Services;
+    using IMM.Data;
+    using IMM.Models;
+    using IMM.Web.Common.Infrastructure.Extensions;
+    using IMM.Data.Common.Repository;
+    using IMM.Web.Common.Mapping;
 
     public class Startup
     {
@@ -21,16 +25,23 @@
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ApplicationDbContext>(options =>
+            services.AddDbContext<IMMDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-                .AddEntityFrameworkStores<ApplicationDbContext>()
+            services.AddIdentity<User, IdentityRole>()
+                .AddEntityFrameworkStores<IMMDbContext>()
                 .AddDefaultTokenProviders();
 
             services.AddTransient<IEmailSender, EmailSender>();
 
+            services.AddAutoMapper(cfg => cfg.AddProfile<AutoMapperProfile>());
+
+            services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
             services.AddMvc();
+
+            services.AddTransient<DbContext, IMMDbContext>();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -49,6 +60,8 @@
             app.UseStaticFiles();
 
             app.UseAuthentication();
+
+            app.UseDatabaseMigration();
 
             app.UseMvc(routes =>
             {
