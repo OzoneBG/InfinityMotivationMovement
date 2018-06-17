@@ -5,3 +5,41 @@
 }
 
 <h2>Shop</h2>
+
+<div class="container">
+    @{
+        var itemCount = 0;
+        foreach (var product in Model)
+        {
+            bool isNewRow = itemCount % 3 == 0;
+
+            if (isNewRow && itemCount != 0)
+            {
+                @Html.Raw("</div>")
+            }
+
+            if (isNewRow)
+            {
+                @Html.Raw("<div class=\"row\" style=\"margin-top: 20px\">");
+            }
+
+            <div class="col-md-4">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p>@product.Name</p>
+                        <p style="font-size: 12px">@product.Description</p>
+                        <p style="font-size: 12px">Quantity: @product.Quantity</p>
+                        <p style="font-size: 12px">Price: $@product.Price</p>
+                    </div>
+                    <div class="col-md-6">
+                        <img class="float-right" src="#" width="128" height="128" />
+                        <button class="btn btn-success float-right" type="button">Add to cart</button>
+                    </div>
+
+                </div>
+            </div>
+
+            itemCount++;
+        }
+    }
+</div>
