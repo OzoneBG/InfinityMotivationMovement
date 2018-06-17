@@ -7,7 +7,6 @@
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using AutoMapper;
-    using IMM.Data.Services;
     using IMM.Data;
     using IMM.Models;
     using IMM.Web.Common.Infrastructure.Extensions;
@@ -15,7 +14,6 @@
     using IMM.Web.Common.Mapping;
     using IMM.Data.Services.Interfaces;
     using IMM.Data.Services.Implementations;
-    using IMM.Data.Services.DbSeeder;
 
     public class Startup
     {
@@ -49,7 +47,7 @@
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddTransient<DbContext, IMMDbContext>();
-            //add db seeder here
+
             services.AddTransient<ICategoriesService, CategoriesService>();
             services.AddTransient<IProductsService, ProductsService>();
 
