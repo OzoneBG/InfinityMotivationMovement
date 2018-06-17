@@ -13,6 +13,9 @@
     using IMM.Web.Common.Infrastructure.Extensions;
     using IMM.Data.Common.Repository;
     using IMM.Web.Common.Mapping;
+    using IMM.Data.Services.Interfaces;
+    using IMM.Data.Services.Implementations;
+    using IMM.Data.Services.DbSeeder;
 
     public class Startup
     {
@@ -28,9 +31,16 @@
             services.AddDbContext<IMMDbContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddIdentity<User, IdentityRole>()
-                .AddEntityFrameworkStores<IMMDbContext>()
-                .AddDefaultTokenProviders();
+            services.AddIdentity<User, IdentityRole>(o =>
+            {
+                o.Password.RequireDigit = false;
+                o.Password.RequireLowercase = false;
+                o.Password.RequireUppercase = false;
+                o.Password.RequireNonAlphanumeric = false;
+                o.Password.RequiredLength = 6;
+            })
+            .AddEntityFrameworkStores<IMMDbContext>()
+            .AddDefaultTokenProviders();
 
             services.AddTransient<IEmailSender, EmailSender>();
 
@@ -38,10 +48,14 @@
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddTransient<DbContext, IMMDbContext>();
+            //add db seeder here
+            services.AddTransient<ICategoriesService, CategoriesService>();
+            services.AddTransient<IProductsService, ProductsService>();
 
             services.AddMvc();
-
-            services.AddTransient<DbContext, IMMDbContext>();
+            services.AddSession();
+            services.AddDirectoryBrowser();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
@@ -61,14 +75,15 @@
 
             app.UseAuthentication();
 
-            app.UseDatabaseMigration();
-
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            app.UseDatabaseMigration();
+            app.SeedDatabase();
         }
     }
 }

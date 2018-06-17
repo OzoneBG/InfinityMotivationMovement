@@ -1,5 +1,5 @@
-﻿@using IMM.Data.Models
-@model ICollection<Product>
+﻿@using IMM.Web.ViewModels.ShopViewModels
+@model IEnumerable<ShopIndexViewModel>
 @{
     ViewData["Title"] = "Shop";
 }
@@ -26,13 +26,14 @@
             <div class="col-md-4">
                 <div class="row">
                     <div class="col-md-6">
-                        <p>@product.Name</p>
-                        <p style="font-size: 12px">@product.Description</p>
-                        <p style="font-size: 12px">Quantity: @product.Quantity</p>
-                        <p style="font-size: 12px">Price: $@product.Price</p>
+                        <a href="#"><p>@product.Name</p></a>
+                        <p class="product-information">Description: @product.Description</p>
+                        <p class="product-information">Category: @product.CategoryName</p>
+                        <p class="product-information">Quantity: @product.Quantity</p>
+                        <p class="product-information">Price: $@product.Price</p>
                     </div>
                     <div class="col-md-6">
-                        <img class="float-right" src="#" width="128" height="128" />
+                        <img class="float-right" src="~/images/tshirt.jpg" width="128" height="128" />
                         <button class="btn btn-success float-right" type="button">Add to cart</button>
                     </div>
 

@@ -10,7 +10,7 @@
     using Microsoft.Extensions.Logging;
     using IMM.Web.ViewModels.AccountViewModels;
     using IMM.Models;
-    using IMM.Data.Services;
+    using IMM.Data.Services.Interfaces;
     using IMM.Web.Common.Infrastructure.Extensions;
 
     [Authorize]

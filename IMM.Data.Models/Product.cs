@@ -1,6 +1,8 @@
 ﻿namespace IMM.Data.Models
 {
     using IMM.Data.Common.Models;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
 
     public class Product : AuditInfo
     {
@@ -15,5 +17,7 @@
         public int Quantity { get; set; }
 
         public Category Category { get; set; }
+
+        public int CategoryId { get; set; }
     }
 }

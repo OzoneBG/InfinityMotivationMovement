@@ -1,4 +1,4 @@
-﻿namespace IMM.Data.Services
+﻿namespace IMM.Data.Services.Interfaces
 {
     using System.Threading.Tasks;
 

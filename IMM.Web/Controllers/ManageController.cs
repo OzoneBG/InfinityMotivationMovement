@@ -12,7 +12,7 @@
     using Microsoft.Extensions.Logging;
     using IMM.Models;
     using IMM.Web.ViewModels.ManageViewModels;
-    using IMM.Data.Services;
+    using IMM.Data.Services.Interfaces;
     using IMM.Web.Common.Infrastructure.Extensions;
 
     [Authorize]

@@ -1,6 +1,6 @@
 ﻿namespace IMM.Web.Common.Infrastructure.Extensions
 {
-    using IMM.Data.Services;
+    using IMM.Data.Services.Interfaces;
     using System.Text.Encodings.Web;
     using System.Threading.Tasks;
 

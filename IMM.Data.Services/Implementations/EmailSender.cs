@@ -1,5 +1,6 @@
-﻿namespace IMM.Data.Services
+﻿namespace IMM.Data.Services.Implementations
 {
+    using IMM.Data.Services.Interfaces;
     using System.Threading.Tasks;
 
     // This class is used by the application to send email for account confirmation and password reset.
