@@ -3,9 +3,12 @@
     using AutoMapper;
     using IMM.Data.Models;
     using IMM.Web.Common.Mapping.Interfaces;
+    using System;
 
     public class ShopIndexViewModel : IMapFrom<Product>, IHaveCustomMappings
     {
+        public Guid Id { get; set; }
+
         public string Name { get; set; }
 
         public string Description { get; set; }

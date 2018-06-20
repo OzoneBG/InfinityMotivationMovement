@@ -26,7 +26,7 @@
             <div class="col-md-4">
                 <div class="row">
                     <div class="col-md-6">
-                        <a asp-area="" asp-controller="Shop" asp-action="Product">@product.Name</a>
+                        <a asp-area="" asp-controller="Shop" asp-action="Product" asp-route-id="@product.Id" asp-route-name="@product.Name">@product.Name</a>
                         <p class="product-information">Description: @product.Description</p>
                         <p class="product-information">Category: @product.CategoryName</p>
                         <p class="product-information">Quantity: @product.Quantity</p>

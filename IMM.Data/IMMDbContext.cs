@@ -17,6 +17,7 @@
             : base(options)
         {
             this.options = options;
+            Database.Migrate();
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

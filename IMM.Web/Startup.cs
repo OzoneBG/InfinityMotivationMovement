@@ -76,6 +76,10 @@
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
+                    name: "ViewProduct",
+                    template: "{controller=Shop}/{action=Product}/{id}/{name}");
+
+                routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });

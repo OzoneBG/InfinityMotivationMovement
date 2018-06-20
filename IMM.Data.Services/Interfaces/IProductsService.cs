@@ -1,4 +1,5 @@
 ﻿using IMM.Data.Models;
+using System;
 using System.Linq;
 
 namespace IMM.Data.Services.Interfaces
@@ -9,7 +10,7 @@ namespace IMM.Data.Services.Interfaces
 
         void CreateNewProduct(string Name, string Description, Category Category, decimal Price = 0M, int Quantity = 0);
 
-        IQueryable<Product> GetProductById(int Id);
+        IQueryable<Product> GetProductById(Guid Id);
 
         IQueryable<Product> GetProductByName(string Name);
 

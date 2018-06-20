@@ -5,6 +5,7 @@
     using Microsoft.AspNetCore.Mvc;
     using AutoMapper.QueryableExtensions;
     using System.Linq;
+    using System;
 
     public class ShopController : Controller
     {
@@ -13,6 +14,18 @@
         public ShopController(IProductsService productsService)
         {
             this.productsService = productsService;
+        }
+
+        public IActionResult Product(Guid id, string name)
+        {
+            var product = productsService.GetProductById(id).FirstOrDefault();
+
+            if(product == null)
+            {
+                return NotFound();
+            }
+
+            return View(product);
         }
 
         public IActionResult Index()

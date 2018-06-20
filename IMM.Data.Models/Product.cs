@@ -1,12 +1,14 @@
 ﻿namespace IMM.Data.Models
 {
     using IMM.Data.Common.Models;
+    using System;
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
 
     public class Product : AuditInfo
     {
-        public int Id { get; set; }
+        [Key]
+        public Guid Id { get; set; }
 
         public string Name { get; set; }
 

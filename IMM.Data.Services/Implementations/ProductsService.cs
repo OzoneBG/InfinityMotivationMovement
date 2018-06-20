@@ -1,5 +1,6 @@
 ﻿namespace IMM.Data.Services.Implementations
 {
+    using System;
     using System.Collections.Generic;
     using System.Linq;
     using IMM.Data.Common.Repository;
@@ -24,7 +25,7 @@
                 Description = Description,
                 Price = Price,
                 Quantity = Quantity,
-                Category = Category
+                CategoryId = Category.Id
             };
 
             products.Add(product);
@@ -36,12 +37,9 @@
             return products.All().Include(p => p.Category).AsQueryable();
         }
 
-        public IQueryable<Product> GetProductById(int Id)
+        public IQueryable<Product> GetProductById(Guid Id)
         {
-            var product = products
-                .All()
-                .Where(p => p.Id == Id)
-                .AsQueryable();
+            var product = GetAllProducts().Where(x => x.Id == Id);
 
             return product;
         }
